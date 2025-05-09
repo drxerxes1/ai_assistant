@@ -1,8 +1,7 @@
 import 'package:ai_assistant/helper/global.dart';
+import 'package:ai_assistant/screen/onboarding_screen.dart';
 import 'package:ai_assistant/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
-
-import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (_) => const HomeScreen(),
+          builder: (_) => const OnboardingScreen(),
         ),
       );
     });
