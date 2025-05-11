@@ -1,4 +1,3 @@
-import 'package:ai_assistant/apis/apis.dart';
 import 'package:ai_assistant/helper/global.dart';
 import 'package:ai_assistant/helper/pref.dart';
 import 'package:ai_assistant/model/home_type.dart';
@@ -24,8 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     mq = MediaQuery.sizeOf(context);
-
-    APIs.getAnswer('Hi');
 
     return Scaffold(
       appBar: AppBar(

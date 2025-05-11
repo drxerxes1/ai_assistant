@@ -19,20 +19,26 @@ class HomeCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       color: Colors.blue[50],
-      child: Row(
-        children: [
-          Lottie.asset(homeType.lottie, width: mq.width * 0.3),
-          const Spacer(),
-          Text(
-            homeType.name,
-            style: TextStyle(
-              fontSize: mq.width * 0.05,
-              fontWeight: FontWeight.w500,
-              color: Colors.blue[800],
+      child: InkWell(
+        borderRadius: BorderRadius.circular(20),
+        onTap: homeType.onTap,
+        child: Row(
+          children: [
+            Lottie.asset(homeType.lottie, width: mq.width * 0.3),
+            const Spacer(),
+            Text(
+              homeType.name,
+              style: TextStyle(
+                fontSize: mq.width * 0.05,
+                fontWeight: FontWeight.w500,
+                color: Colors.blue[800],
+              ),
             ),
-          ),
-          const Spacer(flex: 2,),
-        ],
+            const Spacer(
+              flex: 2,
+            ),
+          ],
+        ),
       ),
     ).animate().fade(duration: 1.seconds);
   }

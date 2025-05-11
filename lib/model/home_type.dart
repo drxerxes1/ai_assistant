@@ -1,3 +1,9 @@
+import 'package:ai_assistant/screen/feature/chatbot_feature.dart';
+import 'package:ai_assistant/screen/feature/image_feature.dart';
+import 'package:ai_assistant/screen/feature/translator_feature.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 enum HomeType {aiChatbot, aiImage, aiTranslator}
 
 extension HomeTypeExtension on HomeType {
@@ -21,4 +27,10 @@ extension HomeTypeExtension on HomeType {
         return 'assets/lottie/translate.json';
     }
   }
+
+  VoidCallback get onTap => switch (this) {
+    HomeType.aiChatbot => () => Get.to(() => const ChatbotFeature()),
+    HomeType.aiImage => () => Get.to(() => const ImageFeature()),
+    HomeType.aiTranslator => () => Get.to(() => const TranslatorFeature()),
+  };
 }
