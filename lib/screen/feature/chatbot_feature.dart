@@ -30,6 +30,8 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
               controller: _controller.textController,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),
               decoration: InputDecoration(
+                fillColor: Colors.white,
+                filled: true,
                 isDense: true,
                 hintText: 'Type your message here...',
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -58,6 +60,7 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
       ),
       body: Obx(
         () => ListView(
+          physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(
             bottom: mq.height * 0.1,
             top: mq.height * 0.02,
