@@ -18,7 +18,8 @@ class HomeCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      color: Colors.blue[50],
+      color: Colors.deepPurple.withOpacity(0.1),
+      elevation: 0,
       child: InkWell(
         borderRadius: BorderRadius.circular(20),
         onTap: homeType.onTap,
@@ -31,7 +32,7 @@ class HomeCard extends StatelessWidget {
               style: TextStyle(
                 fontSize: mq.width * 0.05,
                 fontWeight: FontWeight.w500,
-                color: Colors.blue[800],
+                color: Colors.deepPurple,
               ),
             ),
             const Spacer(

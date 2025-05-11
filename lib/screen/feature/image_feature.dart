@@ -15,7 +15,7 @@ class _ImageFeatureState extends State<ImageFeature> {
           title: const Text('Image Generator'),
         ),
         body: ListView(
-          children: [],
+          children: const [],
         ));
   }
 }

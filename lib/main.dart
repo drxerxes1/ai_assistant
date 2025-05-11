@@ -28,12 +28,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       theme: ThemeData(
           appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.blue),
-        elevation: 1,
+        iconTheme: IconThemeData(color: Colors.deepPurple),
+        elevation: 2,
         centerTitle: true,
         backgroundColor: Colors.white,
         titleTextStyle: TextStyle(
-            color: Colors.blue, fontSize: 20, fontWeight: FontWeight.w500),
+            color: Colors.deepPurple, fontSize: 20, fontWeight: FontWeight.w500),
       )),
       title: appName,
       debugShowCheckedModeBanner: false,

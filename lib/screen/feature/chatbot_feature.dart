@@ -1,4 +1,8 @@
+import 'package:ai_assistant/controller/chat_controller.dart';
+import 'package:ai_assistant/helper/global.dart';
+import 'package:ai_assistant/widget/message_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChatbotFeature extends StatefulWidget {
   const ChatbotFeature({super.key});
@@ -8,51 +12,60 @@ class ChatbotFeature extends StatefulWidget {
 }
 
 class _ChatbotFeatureState extends State<ChatbotFeature> {
+  final _controller = ChatController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text('Chat with AI Assistant'),
-        ),
-        body: ListView(
-          children: const [],
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Row(
-            children: [
-              Expanded(
-                  child: TextField(
-                onTapOutside: (event) => FocusScope.of(context).unfocus(),
-                decoration: InputDecoration(
-                  isDense: true,
-                  hintText: 'Type your message here...',
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(20),
-                    borderSide: const BorderSide(color: Colors.blue),
-                  ),
+      appBar: AppBar(
+        title: const Text('Chat with AI Assistant'),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: Row(
+          children: [
+            Expanded(
+                child: TextField(
+              controller: _controller.textController,
+              onTapOutside: (event) => FocusScope.of(context).unfocus(),
+              decoration: InputDecoration(
+                isDense: true,
+                hintText: 'Type your message here...',
+                hintStyle: const TextStyle(color: Colors.grey),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(color: Colors.deepPurple),
                 ),
-              )),
-
-              const SizedBox(
-                width: 8,
               ),
-
-              CircleAvatar(
-                radius: 24,
-                backgroundColor: Colors.blue,
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(
-                    Icons.send,
-                    color: Colors.white,
-                  ),
+            )),
+            const SizedBox(
+              width: 8,
+            ),
+            CircleAvatar(
+              radius: 24,
+              backgroundColor: Colors.deepPurple,
+              child: IconButton(
+                onPressed: _controller.chat,
+                icon: const Icon(
+                  Icons.send,
+                  color: Colors.white,
                 ),
-              )
-            ],
+              ),
+            )
+          ],
+        ),
+      ),
+      body: Obx(
+        () => ListView(
+          padding: EdgeInsets.only(
+            bottom: mq.height * 0.1,
+            top: mq.height * 0.02,
           ),
-        ));
+          children:
+              _controller.messages.map((e) => MessageCard(message: e)).toList(),
+        ),
+      ),
+    );
   }
 }

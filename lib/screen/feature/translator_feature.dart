@@ -15,7 +15,7 @@ class _TranslatorFeatureState extends State<TranslatorFeature> {
           title: const Text('Multilingual Translator'),
         ),
         body: ListView(
-          children: [],
+          children: const [],
         ));
   }
 }
