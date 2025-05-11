@@ -1,5 +1,6 @@
 import 'package:ai_assistant/helper/global.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 import '../model/onboard.dart';
@@ -32,7 +33,7 @@ class OnboardingScreen extends StatelessWidget {
 
     return Scaffold(
         body: PageView.builder(
-          controller: controller,
+      controller: controller,
       itemCount: list.length,
       itemBuilder: (ctx, ind) {
         final isLast = ind == list.length - 1;
@@ -103,11 +104,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
               onPressed: () {
                 if (isLast) {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (_) => const HomeScreen(),
-                    ),
-                  );
+                  Get.off(() => const HomeScreen());
                 } else {
                   controller.nextPage(
                       duration: const Duration(milliseconds: 600),

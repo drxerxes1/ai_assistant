@@ -3,6 +3,7 @@ import 'package:ai_assistant/helper/pref.dart';
 import 'package:ai_assistant/screen/onboarding_screen.dart';
 import 'package:ai_assistant/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'home_screen.dart';
 
@@ -18,14 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 3), () {
-      // ignore: use_build_context_synchronously
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) => Pref.showOnboarding
-              ? const OnboardingScreen()
-              : const HomeScreen(),
-        ),
-      );
+      Get.off(() =>
+          Pref.showOnboarding ? const OnboardingScreen() : const HomeScreen());
     });
   }
 
