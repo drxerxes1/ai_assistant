@@ -1,6 +1,7 @@
 import 'package:ai_assistant/helper/global.dart';
 import 'package:ai_assistant/model/home_type.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lottie/lottie.dart';
 
 class HomeCard extends StatelessWidget {
@@ -10,6 +11,8 @@ class HomeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Animate.restartOnHotReload = true;
+
     return Card(
       margin: EdgeInsets.only(bottom: mq.height * 0.02),
       shape: RoundedRectangleBorder(
@@ -31,6 +34,6 @@ class HomeCard extends StatelessWidget {
           const Spacer(flex: 2,),
         ],
       ),
-    );
+    ).animate().fade(duration: 1.seconds);
   }
 }
