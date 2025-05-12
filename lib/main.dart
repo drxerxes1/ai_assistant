@@ -27,14 +27,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-          appBarTheme: const AppBarTheme(
-        iconTheme: IconThemeData(color: Colors.deepPurple),
-        elevation: 2,
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        titleTextStyle: TextStyle(
-            color: Colors.deepPurple, fontSize: 20, fontWeight: FontWeight.w500),
-      )),
+          scaffoldBackgroundColor: Colors.blueAccent[50],
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.blueGrey,
+          ),
+          appBarTheme: AppBarTheme(
+            iconTheme: const IconThemeData(color: Colors.blueGrey),
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            titleTextStyle: TextStyle(
+                color: Colors.blueGrey[800],
+                fontSize: 20,
+                fontWeight: FontWeight.w500),
+          )),
       title: appName,
       debugShowCheckedModeBanner: false,
       home: const SplashScreen(),

@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.brightness_4_rounded, color: Colors.deepPurple),
+            icon: Icon(Icons.brightness_4_rounded, color: Colors.blueGrey[800]),
           ),
         ],
       ),

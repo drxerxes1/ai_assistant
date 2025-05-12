@@ -27,6 +27,7 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
           children: [
             Expanded(
                 child: TextField(
+              textCapitalization: TextCapitalization.sentences,
               controller: _controller.textController,
               onTapOutside: (event) => FocusScope.of(context).unfocus(),
               decoration: InputDecoration(
@@ -37,7 +38,7 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
                 hintStyle: const TextStyle(color: Colors.grey),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.deepPurple),
+                  borderSide: const BorderSide(color: Colors.blueGrey),
                 ),
               ),
             )),
@@ -46,7 +47,7 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
             ),
             CircleAvatar(
               radius: 24,
-              backgroundColor: Colors.deepPurple,
+              backgroundColor: Colors.blueGrey[800],
               child: IconButton(
                 onPressed: _controller.chat,
                 icon: const Icon(

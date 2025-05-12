@@ -32,9 +32,9 @@ class MessageCard extends StatelessWidget {
                 margin: EdgeInsets.only(
                     bottom: mq.height * 0.02, left: mq.width * 0.02),
                 padding: EdgeInsets.symmetric(
-                    vertical: mq.height * 0.01, horizontal: mq.width * 0.02),
+                    vertical: mq.height * 0.01, horizontal: mq.width * 0.03),
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.deepPurple),
+                    color: Colors.blueGrey[50],
                     borderRadius: const BorderRadius.only(
                         topLeft: borderRadius,
                         topRight: borderRadius,
@@ -70,20 +70,24 @@ class MessageCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(
                     vertical: mq.height * 0.01, horizontal: mq.width * 0.02),
                 decoration: BoxDecoration(
-                    border: Border.all(color: Colors.deepPurple),
+                    color: Colors.blueGrey[800],
                     borderRadius: const BorderRadius.only(
                         topLeft: borderRadius,
                         topRight: borderRadius,
                         bottomLeft: borderRadius)),
                 child: Text(message.message,
-                    style: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                    style: TextStyle(
+                        color: Colors.blueGrey[100],
+                        fontWeight: FontWeight.w500)),
               ),
               CircleAvatar(
                   radius: 18,
-                  backgroundColor: Colors.deepPurple.withOpacity(.1),
+                  backgroundColor: Colors.blueGrey.withOpacity(.1),
                   child: Icon(Icons.person,
-                      color: Colors.deepPurple, size: mq.width * 0.06)),
+                      color: Colors.blueGrey, size: mq.width * 0.06)),
+              SizedBox(
+                width: mq.width * 0.02,
+              ),
             ],
           );
   }
