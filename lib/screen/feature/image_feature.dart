@@ -1,7 +1,9 @@
 import 'package:ai_assistant/controller/image_controller.dart';
 import 'package:ai_assistant/helper/global.dart';
 import 'package:ai_assistant/widget/custom_button.dart';
+import 'package:ai_assistant/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class ImageFeature extends StatefulWidget {
@@ -53,18 +55,37 @@ class _ImageFeatureState extends State<ImageFeature> {
           Container(
             height: mq.height * 0.5,
             alignment: Alignment.center,
-            child: Lottie.asset(
-              'assets/lottie/imagination.json',
-              height: mq.height * 0.3,
-              width: mq.width * 0.8,
-              fit: BoxFit.cover,
-            ),
+            child: Obx(() => _aiImage()),
           ),
 
           // Create Button
-          CustomButton(onTap: () {}, text: 'Create Image'),
+          CustomButton(onTap: _controller.createAIImage, text: 'Create Image'),
+
+          // Using Lexica API
+          // CustomButton(onTap: _controller.searchAIImage, text: 'Create Image'),
         ],
       ),
+    );
+  }
+
+  Widget _aiImage() {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: switch (_controller.status.value) {
+        Status.none => Lottie.asset(
+            'assets/lottie/imagination.json',
+            height: mq.height * 0.3,
+            width: mq.width * 0.8,
+            fit: BoxFit.cover,
+          ),
+        Status.complete => _controller.url.isNotEmpty
+            ? Image.memory(
+                _controller.url.first,
+                fit: BoxFit.cover,
+              )
+            : const SizedBox(),
+        Status.loading => const CustomLoading(),
+      },
     );
   }
 }
