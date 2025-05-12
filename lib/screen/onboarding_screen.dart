@@ -1,4 +1,5 @@
 import 'package:ai_assistant/helper/global.dart';
+import 'package:ai_assistant/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -91,30 +92,17 @@ class OnboardingScreen extends StatelessWidget {
             const Spacer(),
 
             // button
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                shape: const StadiumBorder(),
-                textStyle:
-                    const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                backgroundColor: Colors.blue,
-                foregroundColor: Colors.white,
-                padding: EdgeInsets.symmetric(
-                    horizontal: mq.width * .2, vertical: mq.height * .02),
-                elevation: 0,
-              ),
-              onPressed: () {
-                if (isLast) {
-                  Get.off(() => const HomeScreen());
-                } else {
-                  controller.nextPage(
-                      duration: const Duration(milliseconds: 600),
-                      curve: Curves.ease);
-                }
-              },
-              child: Text(
-                isLast ? 'Finish' : 'Next',
-              ),
-            ),
+            CustomButton(
+                onTap: () {
+                  if (isLast) {
+                    Get.off(() => const HomeScreen());
+                  } else {
+                    controller.nextPage(
+                        duration: const Duration(milliseconds: 600),
+                        curve: Curves.ease);
+                  }
+                },
+                text: isLast ? 'Finish' : 'Next'),
 
             const Spacer(),
           ],

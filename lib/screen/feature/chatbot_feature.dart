@@ -26,22 +26,23 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
         child: Row(
           children: [
             Expanded(
-                child: TextField(
-              textCapitalization: TextCapitalization.sentences,
-              controller: _controller.textController,
-              onTapOutside: (event) => FocusScope.of(context).unfocus(),
-              decoration: InputDecoration(
-                fillColor: Colors.white,
-                filled: true,
-                isDense: true,
-                hintText: 'Type your message here...',
-                hintStyle: const TextStyle(color: Colors.grey),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(20),
-                  borderSide: const BorderSide(color: Colors.blueGrey),
+              child: TextFormField(
+                textCapitalization: TextCapitalization.sentences,
+                controller: _controller.textController,
+                onTapOutside: (event) => FocusScope.of(context).unfocus(),
+                decoration: InputDecoration(
+                  fillColor: Colors.white,
+                  filled: true,
+                  isDense: true,
+                  hintText: 'Type your message here...',
+                  hintStyle: const TextStyle(color: Colors.grey),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(color: Colors.blueGrey),
+                  ),
                 ),
               ),
-            )),
+            ),
             const SizedBox(
               width: 8,
             ),

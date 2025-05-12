@@ -16,6 +16,7 @@ class MessageCard extends StatelessWidget {
 
         // Bot message
         ? Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               SizedBox(
                 width: mq.width * 0.02,
@@ -62,13 +63,14 @@ class MessageCard extends StatelessWidget {
         // User message
         : Row(
             mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Container(
                 constraints: BoxConstraints(maxWidth: mq.width * 0.7),
                 margin: EdgeInsets.only(
                     bottom: mq.height * 0.02, right: mq.width * 0.02),
                 padding: EdgeInsets.symmetric(
-                    vertical: mq.height * 0.01, horizontal: mq.width * 0.02),
+                    vertical: mq.height * 0.01, horizontal: mq.width * 0.03),
                 decoration: BoxDecoration(
                     color: Colors.blueGrey[800],
                     borderRadius: const BorderRadius.only(
@@ -77,7 +79,7 @@ class MessageCard extends StatelessWidget {
                         bottomLeft: borderRadius)),
                 child: Text(message.message,
                     style: TextStyle(
-                        color: Colors.blueGrey[100],
+                        color: Colors.blueGrey[50],
                         fontWeight: FontWeight.w500)),
               ),
               CircleAvatar(
