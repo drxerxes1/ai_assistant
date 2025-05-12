@@ -1,9 +1,12 @@
+import 'dart:developer';
 import 'dart:typed_data';
 
 import 'package:ai_assistant/apis/apis.dart';
 import 'package:ai_assistant/helper/custom_dialog.dart';
+import 'package:ai_assistant/helper/permission_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:saver_gallery/saver_gallery.dart';
 
 enum Status { none, loading, complete }
 
@@ -33,21 +36,42 @@ class ImageController extends GetxController {
     }
   }
 
-  // Future<void> searchAIImage() async {
-  //   if (textController.text.trim().isNotEmpty) {
-  //     status.value = Status.loading;
+  void downloadImage() async {
+    try {
+      // Check if URL is valid
+      if (url.isEmpty || url[0].isEmpty) return;
 
-  //     imageList.value = await APIs.searchAIImage(textController.text);
+      // Request storage permission
+      final hasPermission = await requestPermission();
+      if (!hasPermission) {
+        CustomDialog.error('Storage permission denied');
+        return;
+      }
 
-  //     if (imageList.isEmpty) {
-  //       log('Error');
+      // Show loading dialog
+      CustomDialog.loading();
 
-  //       return;
-  //     }
+      // Save the image to the gallery
+      final result = await SaverGallery.saveImage(
+        url[0], // Uint8List image data
+        quality: 100, // Image quality
+        fileName: 'ai_image_${DateTime.now().millisecondsSinceEpoch}', skipIfExists: false,
+      );
 
-  //     url.value = imageList.first;
+      // Close the loading dialog
+      Get.back();
 
-  //     status.value = Status.complete;
-  //   } else {}
-  // }
+      // Check if the image was saved successfully
+      if (result.isSuccess == true) {
+        CustomDialog.success('Image saved to gallery');
+      } else {
+        CustomDialog.error('Failed to save image');
+      }
+    } catch (e) {
+      // Handle any errors that occurred during the process
+      Get.back();
+      log('Error saving image: $e');
+      CustomDialog.error('An error occurred while saving the image');
+    }
+  }
 }

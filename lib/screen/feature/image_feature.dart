@@ -65,6 +65,14 @@ class _ImageFeatureState extends State<ImageFeature> {
           // CustomButton(onTap: _controller.searchAIImage, text: 'Create Image'),
         ],
       ),
+      floatingActionButton:
+          Obx(() => _controller.status.value == Status.complete
+              ? FloatingActionButton(
+                  onPressed: _controller.downloadImage,
+                  backgroundColor: Colors.blueGrey,
+                  child: const Icon(Icons.save_alt_rounded),
+                )
+              : const SizedBox()),
     );
   }
 

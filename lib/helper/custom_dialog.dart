@@ -1,3 +1,4 @@
+import 'package:ai_assistant/widget/custom_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -42,5 +43,12 @@ class CustomDialog {
         color: Colors.blueGrey[50],
       ),
     );
+  }
+
+  // Loading
+  static void loading() {
+    Get.dialog(const Center(
+      child: CustomLoading(),
+    ));
   }
 }
