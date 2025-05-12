@@ -60,6 +60,7 @@ class _ChatbotFeatureState extends State<ChatbotFeature> {
       ),
       body: Obx(
         () => ListView(
+          controller: _controller.scrollController,
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.only(
             bottom: mq.height * 0.1,

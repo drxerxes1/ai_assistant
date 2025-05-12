@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class ChatController extends GetxController {
   final textController = TextEditingController();
+  final scrollController = ScrollController();
 
   final messages = <Message>[
     Message(
@@ -14,16 +15,28 @@ class ChatController extends GetxController {
 
   Future<void> chat() async {
     if (textController.text.trim().isNotEmpty) {
+      // User
       messages.add(
           Message(message: textController.text, messageType: MessageType.user));
-      messages.add(Message(message: '...', messageType: MessageType.bot));
+      messages.add(Message(message: '', messageType: MessageType.bot));
+      scrollToBottom();
 
       final response = await APIs.getAnswer(textController.text);
 
+      // Bot
       messages.removeLast();
       messages.add(Message(message: response, messageType: MessageType.bot));
+      scrollToBottom();
 
       textController.clear();
     }
+  }
+
+  void scrollToBottom() {
+    scrollController.animateTo(
+      scrollController.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
   }
 }

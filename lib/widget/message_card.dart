@@ -1,5 +1,6 @@
 import 'package:ai_assistant/helper/global.dart';
 import 'package:ai_assistant/model/message.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 
 class MessageCard extends StatelessWidget {
@@ -38,9 +39,23 @@ class MessageCard extends StatelessWidget {
                         topLeft: borderRadius,
                         topRight: borderRadius,
                         bottomRight: borderRadius)),
-                child: Text(message.message,
-                    style: const TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                child: message.message.isEmpty
+                    ? AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                            '. . .',
+                            textStyle: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            speed: const Duration(milliseconds: 100),
+                          ),
+                        ],
+                        repeatForever: true,
+                      )
+                    : Text(message.message,
+                        style: const TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.w500)),
               )
             ],
           )
