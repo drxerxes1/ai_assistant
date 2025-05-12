@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:ai_assistant/apis/apis.dart';
+import 'package:ai_assistant/helper/custom_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,7 +18,7 @@ class ImageController extends GetxController {
 
   Future<void> createAIImage() async {
     final prompt = textController.text.trim();
-    if (prompt.isEmpty) return;
+    if (prompt.isEmpty) return CustomDialog.info('Provide a prompt');
 
     status.value = Status.loading;
 

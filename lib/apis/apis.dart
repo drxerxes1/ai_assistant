@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 import 'dart:typed_data';
 
+import 'package:ai_assistant/helper/custom_dialog.dart';
 import 'package:ai_assistant/helper/global.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,46 +52,49 @@ class APIs {
       return List.from(data['images']).map((e) => e['src'].toString()).toList();
     } catch (e) {
       log('Search Image Error: $e');
+      CustomDialog.error('Error Something went wrong. Try again later... ⛓️‍💥');
       return [];
     }
   }
 
   static Future<Uint8List?> generateImage(String prompt) async {
-  var headers = {
-    'Authorization': 'Bearer $apiKeyImage',
-  };
+    var headers = {
+      'Authorization': 'Bearer $apiKeyImage',
+    };
 
-  var request = http.MultipartRequest(
-    'POST',
-    Uri.parse('https://api.vyro.ai/v2/image/generations'),
-  );
+    var request = http.MultipartRequest(
+      'POST',
+      Uri.parse('https://api.vyro.ai/v2/image/generations'),
+    );
 
-  request.fields.addAll({
-    'prompt': prompt,
-    'style': 'realistic',
-    'aspect_ratio': '1:1',
-    'seed': '5',
-  });
+    request.fields.addAll({
+      'prompt': prompt,
+      'style': 'realistic',
+      'aspect_ratio': '1:1',
+      'seed': '5',
+    });
 
-  request.headers.addAll(headers);
+    request.headers.addAll(headers);
 
-  try {
-    final response = await request.send();
-    log('Response: ${response.statusCode}');
-    log('Response: $response');
+    try {
+      final response = await request.send();
+      log('Response: ${response.statusCode}');
+      log('Response: $response');
 
-    if (response.statusCode == 200) {
-      // Convert stream to bytes
-      final bytes = await response.stream.toBytes();
-      return bytes;
-    } else {
-      print('Request failed with status: ${response.statusCode}');
+      if (response.statusCode == 200) {
+        // Convert stream to bytes
+        final bytes = await response.stream.toBytes();
+        return bytes;
+      } else {
+        print('Request failed with status: ${response.statusCode}');
+        CustomDialog.error(
+            'Request failed with status: ${response.statusCode}');
+      }
+    } catch (e) {
+      print('Error: $e');
+      CustomDialog.error('Error Something went wrong. Try again later... ⛓️‍💥');
     }
-  } catch (e) {
-    print('Error: $e');
+
+    return null;
   }
-
-  return null;
-}
-
 }
